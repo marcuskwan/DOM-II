@@ -247,6 +247,12 @@ img {
   width: 48%;
   padding-right: 1%;
 }
+
+.lorem {
+  overflow-y: scroll;
+  max-height: 300px;
+}
+
 @media (max-width: 500px) {
   .home .content-section .text-content {
     width: 100%;

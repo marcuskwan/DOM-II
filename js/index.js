@@ -1,4 +1,13 @@
 // Your code goes here
+// creating variables
+const container = document.querySelector(".home");
+const letsGo = document.querySelector(".text-content > h2");
+const adventurePara2 = document.querySelectorAll(
+  ".inverse-content > .text-content > p"
+)[1];
+const adventureAwaits = document.querySelector(
+  ".inverse-content > .text-content > h2"
+);
 
 // creating variables, calling event listeners
 // mouseover
@@ -9,11 +18,14 @@ welcomeToFunBus.addEventListener("mouseover", event => {
   event.stopPropagation();
 });
 
-// keydown NOT WORKING
-const letsGo = document.querySelector(".text-content > h2");
-letsGo.addEventListener("keydown", event => {
+// using keydown on form element
+// creating var to form
+
+const form = document.querySelector("form");
+
+form.addEventListener("keydown", event => {
   console.log(event);
-//   console.log("hi");
+  //   console.log("hi");
   event.target.style.color = "blue";
   event.stopPropagation();
 });
@@ -33,23 +45,30 @@ letsGoImg.addEventListener("drag", event => {
   event.stopPropagation();
 });
 
-// load NOT WORKING
-// const letsGoPara2 = document.querySelectorAll(".text-content > p")[1];
-// letsGoPara2.addEventListener("load", event => {
-//   event.target.style.fontFamily = "Indie Flower";
+// using load on window object
+const letsGoPara2 = document.querySelectorAll(".text-content > p")[1];
+window.addEventListener("load", event => {
+  console.log(event);
+  alert(`Page has loaded!`);
+  //   event.target.style.fontFamily = "Indie Flower";
+  //   event.stopPropagation;
+});
+
+// window.document.onload = function() {
+//     console.log(`hi`);
+// }
+
+// focus on form
+// form.addEventListener("focus", event => {
+//   event.target.style.background = "pink";
 //   event.stopPropagation;
 // });
 
-// focus NOT WORKING
-// const adventureAwaits = document.querySelector(
-//   ".inverse-content > .text-content > h2"
-// );
-// adventureAwaits.addEventListener("focus", event => {
-//   event.target.style.color = "pink";
-//   event.stopPropagation;
-// });
+const formInput = document.querySelectorAll("input")
 
-// resize NOT WORKING
+formInput.forEach(input => input.addEventListener('focus', event => event.target.style.background = 'pink'))
+
+// resize 
 // const adventureImg = document.querySelector(
 //   ".inverse-content > .img-content > img"
 // );
@@ -59,24 +78,60 @@ letsGoImg.addEventListener("drag", event => {
 //   event.stopPropagation;
 // });
 
-// scroll NOT WORKING
-// const adventurePara = document.querySelector(".inverse-content > .text-content > p");
-// adventurePara.addEventListener("scroll",event => {
-//     console.log(event);
-//     event.target.style.fontColor = "purple";
-//     event.stopPropagation;
-// });
+window.addEventListener("resize",e => alert("We have resized!"));
 
-// select NOT WORKING
-// const adventurePara2 = document.querySelectorAll(".inverse-content > .text-content > p")[1];
-// adventurePara2.addEventListener("select",event => {
-//     event.target.textContent = "Paragraph text has changed";
-//     event.stopPropagation;
-// })
+// scroll. make sure to put it on window, or use overflow y axis and max-height
+const adventurePara = document.querySelector(
+  ".inverse-content > .text-content > p"
+);
+// const container = document.querySelector(".container");
+window.addEventListener("scroll", event => {
+  console.log(event);
+  adventurePara.style.backgroundColor = "purple";
+  // container.stopPropagation;
+});
 
-const bottomImg = document.querySelector(".content-destination > img")
-bottomImg.addEventListener("dblclick",event => {
-    // console.log(event);
-    event.target.style.borderRadius = "50px";
-    event.stopPropagation;
+// select on form element
+form.addEventListener("select", event => {
+  console.log(event);
+  event.target.value = "Text has been selected!";
+  event.stopPropagation;
+});
+
+
+// dbl click
+const bottomImg = document.querySelector(".content-destination > img");
+bottomImg.addEventListener("dblclick", event => {
+  console.log(event);
+  event.target.style.borderRadius = "50px";
+  event.stopPropagation;
+});
+
+// using stop propagation with click
+
+const pickYourDestination = document.querySelector(".content-destination > h2");
+pickYourDestination.addEventListener("click", event => {
+  event.stopPropagation();
+  event.currentTarget.style.border = "1px solid yellow";
+});
+
+const contentDestinationDiv = document.querySelector(".content-destination");
+contentDestinationDiv.addEventListener("click", event => {
+  event.stopPropagation();
+  event.currentTarget.style.border = "1px solid pink";
+});
+
+// creating form and appending it to end of container
+
+// const form = document.createElement('form');
+// container.appendChild(form);
+// form.label =
+
+// creating variable for nav links, use a foreach on all of them to apply stopDefault
+
+const navLinks = document.querySelectorAll("a");
+navLinks.forEach(function(a) {
+  a.addEventListener("click", event => {
+    event.preventDefault();
+  });
 });
